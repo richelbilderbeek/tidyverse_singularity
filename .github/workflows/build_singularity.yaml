@@ -45,9 +45,9 @@ jobs:
       - name: Run container with binding
         run: ./scripts/run_container.sh
 
-      - name: Upload the container
-        uses: actions/upload-artifact@v2
-        with:
-          name: tidyverse.sif
-          path: tidyverse.sif
+#      - name: Upload the container
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: tidyverse.sif
+#          path: tidyverse.sif
 
