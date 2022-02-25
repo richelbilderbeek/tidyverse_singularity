@@ -2,9 +2,9 @@ Bootstrap: docker
 From: rocker/tidyverse
 
 %post
-    sed -i 's/$/ universe/' /etc/apt/sources.list
-    apt-get update
-    apt-get clean
+    #sed -i 's/$/ universe/' /etc/apt/sources.list
+    #apt-get update
+    #apt-get clean
     # Rscript -e 'install.packages("stringr")'
 
 %runscript
@@ -13,7 +13,7 @@ Rscript "$@"
 
 %test
     Rscript -e 'library(stringr)'
-    message(stringr::str_trim("   Hello world   "))
+    Rscript -e 'message(stringr::str_trim("   Hello world   "))'
 
 %help
 
