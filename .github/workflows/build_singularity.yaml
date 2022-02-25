@@ -1,0 +1,50 @@
+on:
+  push:
+  pull_request:
+  schedule:
+  - cron: "0 0 * * 5"
+
+name: build_singularity
+
+jobs:
+  build_singularity:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        singularity_version:
+          - '3.7.4'
+    container:
+      image: quay.io/singularity/singularity:v${{ matrix.singularity_version }}
+      options: --privileged
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Show singularity version
+        run: singularity version
+
+      - name: Build Container
+        run: ./scripts/build_singularity_container.sh
+
+      - name: Test container
+        run: singularity test tidyverse.sif
+
+      - name: Show help of container
+        run: singularity run-help tidyverse.sif
+
+      - name: Show script
+        run: cat scripts/demo_container.R
+
+      - name: Run container with binding
+        run: singularity run --bind $PWD/scripts/ tidyverse.sif scripts/demo_container.R
+
+      - name: Upload the container
+        uses: actions/upload-artifact@v2
+        with:
+          name: tidyverse.sif
+          path: tidyverse.sif
+
