@@ -1,6 +1,6 @@
-# singularity_singularity
+# tidyverse_singularity
 
-[![build_singularity](https://github.com/richelbilderbeek/singularity_singularity/actions/workflows/build_singularity.yaml/badge.svg)](https://github.com/richelbilderbeek/singularity_singularity/actions/workflows/build_singularity.yaml)
+[![build_singularity](https://github.com/richelbilderbeek/tidyverse_singularity/actions/workflows/build_singularity.yaml/badge.svg)](https://github.com/richelbilderbeek/tidyverse_singularity/actions/workflows/build_singularity.yaml)
 
 Singularity container with a working version of the `singularity` R package.
 
